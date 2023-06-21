@@ -1,0 +1,19 @@
+{
+	"name": "temgrowth",
+	"version": "1.0.0",
+	"main": "index.ts",
+	"scripts": {
+		"dev": "nodemon index.ts"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"puppeteer": "^20.7.2"
+	},
+	"devDependencies": {
+		"chalk": "^4.1.2",
+		"nodemon": "^2.0.22",
+		"typescript": "^5.1.3"
+	}
+}
