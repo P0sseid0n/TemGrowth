@@ -5,6 +5,7 @@ async function temGrowth() {
 	console.time('Time')
 	const browser = await puppeteer.launch({
 		headless: 'new',
+		timeout: 40_000,
 	})
 
 	const urls: Array<{ title: string; url: string }> = [
@@ -32,7 +33,19 @@ async function temGrowth() {
 
 	const pagePromises = urls.map(({ title, url }) => {
 		return new Promise(async (resolve, reject) => {
+			console.time(title)
 			const page = await browser.newPage()
+
+			await page.setRequestInterception(true)
+
+			page.on('request', req => {
+				if (req.resourceType() === 'image') {
+					req.abort()
+				} else {
+					req.continue()
+				}
+			})
+
 			await page.goto(url)
 
 			await page.waitForSelector('.boxFlutuante-btnFinalizar')
@@ -47,6 +60,7 @@ async function temGrowth() {
 
 			page.close()
 			resolve(`${title}: ${isAvailable ? chalk.green('Disponível') : chalk.red('Indisponível')}`)
+			console.timeEnd(title)
 		})
 	})
 

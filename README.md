@@ -2,6 +2,8 @@
 
 Este projeto é uma aplicação em TypeScript que verifica a disponibilidade de produtos no site da [Growth](https://www.gsuplementos.com.br/) usando o Puppeteer.
 
+![Screenshot](./screenshot.png)
+
 ## Prerequisites 📋
 
 -  Node.js
